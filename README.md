@@ -21,15 +21,21 @@ Clone repository and provision.
 ```sh
 git clone https://github.com/nickyoung-hashicorp/vault-aws-single-node.git
 cd vault-aws-single-node
+```
+
+Modify the `terraform.tfvars` if you wish to change the prefix, region, or any other variable's values.
+
+Provision AWS infrastructure.
+```
 terraform init && terraform apply -auto-approve
 ```
-Modify the `terraform.tfvars` if you wish to change the prefix, region, or any other variable's values.
+
 
 
 ## Configure Vault
-SSH to the EC2 instance
+SSH to the EC2 instance.
 ```sh
-ssh -i ssh-key.pem ubuntu@$(terraform output -raw jqvault-ip)
+ssh -i ssh-key.pem ubuntu@$(terraform output -raw vault-ip)
 ```
 
 The Vault service has already been installed and loaded as part of the provisioners.  This workflow walks through initializing, unsealing, and generating a root token.

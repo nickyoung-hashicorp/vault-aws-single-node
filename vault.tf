@@ -35,7 +35,7 @@ resource "null_resource" "configure-vault" {
       "tput setaf 2; echo \"[TERRAFORM-REMOTE-EXEC] Starting Vault service...\"",
       "sudo systemctl start vault",
       "tput setaf 2; echo \"[TERRAFORM-REMOTE-EXEC] Vault installation complete!\"",
-      "chmod +x /home/ubuntu/*.sh",
+      "chmod +x *.sh",
     ]
 
     connection {

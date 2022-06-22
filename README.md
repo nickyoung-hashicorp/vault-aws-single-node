@@ -5,9 +5,9 @@ This example walks through deploying a single HashiCorp Vault instance on AWS EC
 This demonstration includes the following:
  - HashiCorp: Terraform `1.2.3`, Vault `latest`
  - AWS: EC2 and other supporting services
- - Packages: jq, wget, unzip
- - AWS Credentials (Access and Secret Access Keys)
+ - Packages: `jq`, `wget`, `unzip`
 
+This walkthrough assumes you have valid AWS credentials (access and secret access keys).
 
 ## Deploy Vault on a single EC2 instance
 

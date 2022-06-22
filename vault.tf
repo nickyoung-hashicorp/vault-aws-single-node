@@ -21,6 +21,7 @@ resource "null_resource" "configure-vault" {
 
   provisioner "remote-exec" {
     inline = [
+      "sleep 10",
       "sudo apt update -y",
       "sudo apt install unzip wget jq -y",
       "tput setaf 2; echo \"[TERRAFORM-REMOTE-EXEC] Completed package updates and installation!\"",

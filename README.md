@@ -3,7 +3,7 @@ This example walks through deploying a single HashiCorp Vault instance on AWS EC
 
 ## Requirements
 This demonstration includes the following:
- - HashiCorp: Terraform `1.2.3`, Vault `10.3.1`
+ - HashiCorp: Terraform `1.2.3`, Vault `latest`
  - AWS: EC2 and other supporting services
  - Packages: jq, wget, unzip
  - AWS Credentials (Access and Secret Access Keys)
@@ -50,7 +50,7 @@ cat init.json | jq -r '.root_token' > ~/root_token
 export VAULT_TOKEN=$(cat root_token)
 echo $VAULT_TOKEN
 ```
-If you see a value that looks similar to `hvs.oaVqONptgd1Py0ewQJ8sSc5w`, you can proceed with using Vault.
+If you see a value that looks similar to `hvs.oaVqONptgd1Py0ewQJ8sSc5w`, you are logged in and can proceed with using a fresh instance of Vault.
 
 ## Clean Up
 

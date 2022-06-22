@@ -23,28 +23,37 @@ git clone https://github.com/nickyoung-hashicorp/vault-aws-single-node.git
 cd vault-aws-single-node
 terraform init && terraform apply -auto-approve
 ```
+Modify the `terraform.tfvars` if you wish to change the prefix, region, or any other variable's values.
+
 
 ## Configure Vault
 SSH to the EC2 instance
 ```sh
-ssh -i ssh-key.pem ubuntu@$(terraform output vault-ip)
-```
-
-Update packages and install `jq`
-```sh
-sudo apt install jq -y
+ssh -i ssh-key.pem ubuntu@$(terraform output -raw jqvault-ip)
 ```
 
 The Vault service has already been installed and loaded as part of the provisioners.  This workflow walks through initializing, unsealing, and generating a root token.
 ```sh
 export VAULT_SKIP_VERIFY=true
-export VAULT_ADDR=http://127.0.0.1:8200
+export VAULT_ADDR=https://127.0.0.1:8200
 vault operator init -format=json -key-shares=1 -key-threshold=1 > init.json
 sleep 5
 vault operator unseal $(cat init.json | jq -r '.unseal_keys_b64[0]')
 sleep 2
-cat init.json | jq -r '.root_token' > /home/ubuntu/root_token
+cat init.json | jq -r '.root_token' > ~/root_token
 export VAULT_TOKEN=$(cat root_token)
 echo $VAULT_TOKEN
 ```
-Proceed to use Vault
+If you see a value that looks similar to `hvs.oaVqONptgd1Py0ewQJ8sSc5w`, you can proceed with using Vault.
+
+## Clean Up
+
+Exit the EC2 instance.
+```sh
+exit
+```
+
+Destroy infrastructure.
+```sh
+terraform destroy -auto-approve
+```

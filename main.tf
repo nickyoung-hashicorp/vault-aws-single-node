@@ -38,14 +38,28 @@ resource "aws_security_group" "sg" {
 
 
   ingress {
-    from_port   = 22
+    from_port   = 22 # SSH
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+    ingress {
+    from_port   = 80 # HTTP
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   ingress {
-    from_port   = 8200
+    from_port   = 443 # HTTPS
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8200 # Vault API
     to_port     = 8200
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]

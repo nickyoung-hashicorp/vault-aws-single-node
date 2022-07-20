@@ -3,12 +3,12 @@ This example walks through deploying a single HashiCorp Vault instance on AWS EC
 
 ## Requirements
 This demonstration includes the following:
- - HashiCorp: Terraform `1.2.3`, Vault `latest`
+ - HashiCorp: Terraform `1.2.5`, Vault `latest`
  - AWS: EC2 and other supporting services
  - Packages: `jq`, `wget`, `unzip`
 
 This walkthrough assumes you have valid AWS credentials (access and secret access keys).
-
+ 
 ## Deploy Vault on a single EC2 instance
 
 Export / Save your AWS credentials.
@@ -35,7 +35,7 @@ terraform init && terraform apply -auto-approve
 ## Configure Vault
 SSH to the EC2 instance.
 ```sh
-ssh -i ssh-key.pem ubuntu@$(terraform output -raw vault-ip)
+ssh -i ssh-key.pem ubuntu@$(terraform output vault-ip)
 ```
 
 The Vault service has already been installed and loaded as part of the provisioners.  This workflow walks through initializing, unsealing, and generating a root token.

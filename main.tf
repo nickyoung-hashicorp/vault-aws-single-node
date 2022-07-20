@@ -11,7 +11,7 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_vpc" "this" {
+resource "aws_vpc" this {
   cidr_block           = var.address_space
   enable_dns_hostnames = true
 
